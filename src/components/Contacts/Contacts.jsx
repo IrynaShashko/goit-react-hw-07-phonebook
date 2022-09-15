@@ -13,7 +13,7 @@ import {
 const Contacts = ({ contacts, deleteContact }) => {
   return (
     <ContactsList>
-      {contacts?.map(contact => {
+      {contacts.map(contact => {
         return (
           <ContactsItem key={contact.id}>
             <FiHeart />
