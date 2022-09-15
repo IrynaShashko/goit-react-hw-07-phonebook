@@ -3,17 +3,19 @@ import { AppContainer, H1, H2, PhonebookContainer } from '../App/App.styled';
 import ContactsForm from '../Phonebook/Phonebook';
 import Filter from 'components/Filter/Filter';
 import Contacts from 'components/Contacts/Contacts';
+import { getContacts } from 'redux/contactsApi';
 // import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { addContact, removeContact } from 'redux/contacts/contacts-slice';
-import { filterContact } from 'redux/filter/filter-slice';
-import { getFilterContacts } from 'redux/contacts/contacts-selectors';
-import { getFilter } from 'redux/filter/filter-selectors';
+import { useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+import { addContact, removeContact } from 'redux/contacts/contacts-operation';
+// import { filterContact } from 'redux/filter/filter-slice';
+// import { getFilterContacts } from 'redux/contacts/contacts-selectors';
+// import { getFilter } from 'redux/filter/filter-selectors';
 
 const App = () => {
-  const contacts = useSelector(getFilterContacts);
-  const filter = useSelector(getFilter);
+  const contacts = getContacts();
+  console.log('contacts', contacts);
+  // const filter = useSelector(getFilter);
 
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ const App = () => {
   };
 
   const onFilterContact = ({ target }) => {
-    dispatch(filterContact(target.value));
+    // dispatch(filterContact(target.value));
   };
 
   return (
@@ -36,7 +38,7 @@ const App = () => {
         <H1>Phonebook</H1>
         <ContactsForm onSubmit={onAddContact} />
         <H2>Contacts</H2>
-        <Filter search={filter} handleChange={onFilterContact} />
+        <Filter search={contacts} handleChange={onFilterContact} />
         <Contacts contacts={contacts} deleteContact={onRemoveContact} />
       </PhonebookContainer>
     </AppContainer>
