@@ -30,12 +30,12 @@ export const ContactsContainer = styled.div`
   align-items: center;
 `;
 export const ContactsName = styled.p`
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 20px;
   align-items: center;
 `;
 export const ContactsNumber = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
   margin-left: auto;
 `;

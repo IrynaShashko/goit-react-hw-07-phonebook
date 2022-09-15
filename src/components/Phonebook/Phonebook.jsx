@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Label, Input, Button } from '../Phonebook/Phonebook.styled';
+import {
+  useGetContactsQuery,
+  useAddContactMutation,
+} from '../../redux/contactsSlice';
 
-const ContactsForm = ({ onSubmit }) => {
+const ContactsForm = () => {
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -22,9 +29,12 @@ const ContactsForm = ({ onSubmit }) => {
     setName('');
     setNumber('');
   };
-  const handleSubmit = e => {
-    e.preventDefault();
-    onSubmit({ name, number });
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (contacts.find(contact => contact.name === name)) {
+      return alert(`${name} is already in your contacts list`);
+    }
+    addContact({ name: name, number: number });
     reset();
   };
 
