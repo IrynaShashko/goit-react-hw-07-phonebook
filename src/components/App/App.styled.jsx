@@ -5,9 +5,9 @@ export const AppContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   width: 100vw;
   background-color: #fff;
+  padding: 30px 0;
 `;
 export const PhonebookContainer = styled.div`
   margin 0 auto;
