@@ -52,5 +52,5 @@ export const ContactsItemButton = styled.button`
   cursor: pointer;
   box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.75);
   background-color: #000;
-  margin-left: 20px;
+  margin-left: auto;
 `;
