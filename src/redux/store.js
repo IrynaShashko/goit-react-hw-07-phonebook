@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
-// import { contactsReducer } from '../redux/contacts/contacts-slice';
 import { contactsApi } from './contactsSlice';
+import filterSlice from '../redux/filter/filter-slice';
 
 export const store = configureStore({
   reducer: {
-    // contacts: contactsReducer,
+    filter: filterSlice.reducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
   },
   middleware: getDefaultMiddleware => [
@@ -14,27 +15,6 @@ export const store = configureStore({
   ],
 });
 
-// import { configureStore, combineReducers } from '@reduxjs/toolkit';
-// import { persistStore, persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+setupListeners(store.dispatch);
 
-// import contactsReducer from './contacts/contacts-slice';
-// import filterReducer from './filter/filter-slice';
-
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-//   filter: filterReducer,
-// });
-
-// const persistConfig = {
-//   key: 'contacts',
-//   storage,
-// };
-
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// export const store = configureStore({
-//   reducer: persistedReducer,
-// });
-
-// export const persistor = persistStore(store);
+export default store;

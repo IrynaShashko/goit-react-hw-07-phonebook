@@ -3,9 +3,8 @@ import {
   useDeleteContactMutation,
   useGetContactsQuery,
 } from '../../redux/contactsSlice';
-// import { useSelector } from 'react-redux';
-// import { getFilter } from 'redux/filter/filter-slice';
-// import { getFilterContacts } from 'redux/contacts/contacts-selectors';
+import { useSelector } from 'react-redux';
+import { getFilter } from 'redux/filter/filter-slice';
 import { FiHeart } from 'react-icons/fi';
 import {
   ContactsList,
@@ -19,16 +18,14 @@ import {
 const Contacts = () => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const { data } = useGetContactsQuery();
-  // const filterContacts = useSelector(getFilter);
+  const filterContacts = useSelector(getFilter);
 
-  // const getContacts = getFilterContacts(data, filterContacts);
-  // console.log('getContacts', getContacts);
-  // console.log('filterContacts', filterContacts);
-  // const showContacts = getContacts.lenght !== 0 ? getContacts : data;
-  // console.log('showContacts', showContacts);
+  const getContacts = data?.filter(contact =>
+    contact.name.toLowerCase().includes(filterContacts.toLocaleLowerCase())
+  );
   return (
     <ContactsList>
-      {data?.map(contact => {
+      {getContacts?.map(contact => {
         return (
           <ContactsItem key={contact.id}>
             <FiHeart />

@@ -2,7 +2,6 @@ import { FilterContainer } from '../Filter/Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { filter, getFilter } from '../../redux/filter/filter-slice';
 import { Input } from '../Phonebook/Phonebook.styled';
-import propTypes from 'prop-types';
 
 const Filter = () => {
   const name = useSelector(getFilter);
@@ -21,10 +20,6 @@ const Filter = () => {
       />
     </FilterContainer>
   );
-};
-
-Filter.propTypes = {
-  search: propTypes.string,
 };
 
 export default Filter;
